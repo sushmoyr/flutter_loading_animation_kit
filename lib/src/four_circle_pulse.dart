@@ -4,29 +4,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_loading_animation_kit/src/canvas/canvas_kit.dart';
 import 'package:flutter_loading_animation_kit/src/canvas/canvas_kit_widget.dart';
 
+/// The loading animation where four circles are animated. Circles are expanded
+/// to the corners from the center. Then it is rotated 90 degree clockwise by
+/// [turns]. Then the circles returns to center.
 class FourCirclePulse extends StatelessWidget {
   const FourCirclePulse({
     Key? key,
     this.circleColor,
     this.dimension = 48.0,
-    this.rotation = 2,
+    this.turns = 2,
     this.loopDuration = const Duration(milliseconds: 1500),
+    this.curve,
   }) : super(key: key);
 
+  /// The color of each circle. By default primary color from theme is used
   final Color? circleColor;
+
+  /// The widget is square in size. Dimension refers to the length of the side or width or height. Default value is 48
   final double dimension;
-  final double rotation;
+
+  /// Defines the number of turns it takes in one loop. Each turn is 90 degree. Default value is 2
+  final double turns;
+
+  /// Duration of each loop. Default value is 1500 milliseconds.
   final Duration loopDuration;
+
+  /// The curve of the animation. Default is [Curves.linear]
+  final Curve? curve;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox.square(
       dimension: dimension,
       child: CanvasKit(
-        delegate: FourCirclePulseDelegate(
+        delegate: _FourCirclePulseDelegate(
           color: circleColor ?? Theme.of(context).colorScheme.primary,
-          curve: Curves.linear,
-          rotation: rotation,
+          curve: curve ?? Curves.linear,
+          rotation: turns,
           phaseDuration: loopDuration,
         ),
       ),
@@ -34,13 +48,13 @@ class FourCirclePulse extends StatelessWidget {
   }
 }
 
-class FourCirclePulseDelegate extends CanvasKitDelegate {
+class _FourCirclePulseDelegate extends CanvasKitDelegate {
   final Color color;
   final Curve curve;
   final double rotation;
   final Duration phaseDuration;
 
-  FourCirclePulseDelegate({
+  _FourCirclePulseDelegate({
     required this.color,
     required this.curve,
     required this.rotation,
