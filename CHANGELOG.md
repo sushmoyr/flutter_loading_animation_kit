@@ -1,3 +1,7 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Initial release with four types of loading animations
+  * Four Circle Pulse
+  * Yin and Yang
+  * Ripple Ring
+  * Line Ellipse

@@ -1,7 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_loading_animation_kit/flutter_loading_animation_kit.dart';
+
+final GlobalKey<ThemeColorChooserState> _themeKey = GlobalKey();
+
+class ThemeColorChooser extends StatefulWidget {
+  const ThemeColorChooser({
+    Key? key,
+    required this.color,
+    required this.child,
+  }) : super(key: key);
+
+  final MaterialColor color;
+  final Widget child;
+
+  static GlobalKey<ThemeColorChooserState> get themeKey => _themeKey;
+
+  @override
+  State<ThemeColorChooser> createState() => ThemeColorChooserState();
+}
+
+class ThemeColorChooserState extends State<ThemeColorChooser> {
+  late MaterialColor color = widget.color;
+
+  void updateColor(MaterialColor color) => setState(() {
+        this.color = color;
+      });
+
+  @override
+  Widget build(BuildContext context) {
+    return ThemeColor(color: color, child: widget.child);
+  }
+}
+
+class ThemeColor extends InheritedWidget {
+  const ThemeColor({
+    Key? key,
+    required Widget child,
+    required this.color,
+  }) : super(key: key, child: child);
+
+  final MaterialColor color;
+
+  static ThemeColor of(BuildContext context) {
+    final ThemeColor? result =
+        context.dependOnInheritedWidgetOfExactType<ThemeColor>();
+    assert(result != null, 'No ThemeColor found in context');
+    return result!;
+  }
+
+  @override
+  bool updateShouldNotify(covariant ThemeColor oldWidget) {
+    return oldWidget.color != color;
+  }
+}
 
 void main() {
-  runApp(const MyApp());
+  runApp(ThemeColorChooser(key: _themeKey, color: Colors.blue, child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,16 +67,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: ThemeColor.of(context).color,
       ),
       home: const Gallery(),
     );
@@ -37,6 +82,28 @@ class Gallery extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gallery'),
+      ),
+      body: GridView(
+        padding: const EdgeInsets.all(24),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 300, crossAxisSpacing: 16, mainAxisSpacing: 16),
+        children: [
+          const FourCirclePulse(),
+          YinAndYang(
+            yangColor: Theme.of(context).colorScheme.primary,
+          ),
+          const RippleRing(),
+          const LineEllipsis()
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          int idx =
+              DateTime.now().millisecondsSinceEpoch % Colors.primaries.length;
+          ThemeColorChooser.themeKey.currentState
+              ?.updateColor(Colors.primaries[idx]);
+        },
+        child: const Icon(Icons.palette_outlined),
       ),
     );
   }

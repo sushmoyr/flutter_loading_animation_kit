@@ -3,9 +3,14 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_loading_animation_kit/src/canvas/canvas_kit.dart';
 
 class CanvasKit extends StatefulWidget {
-  const CanvasKit({Key? key, required this.delegate}) : super(key: key);
+  const CanvasKit({
+    Key? key,
+    required this.delegate,
+    this.size = Size.zero,
+  }) : super(key: key);
 
   final CanvasKitDelegate delegate;
+  final Size size;
 
   @override
   State<CanvasKit> createState() => _CanvasKitState();
@@ -26,6 +31,7 @@ class _CanvasKitState extends State<CanvasKit>
   Widget build(BuildContext context) {
     return CustomPaint(
       willChange: _ticker.isActive,
+      size: widget.size,
       painter: CanvasPainter(
         delegate: widget.delegate,
         time: _time,
