@@ -10,8 +10,8 @@ class YinAndYang extends StatelessWidget {
     Key? key,
     this.loopDuration = const Duration(seconds: 2),
     this.curve = Curves.linear,
-    this.yinColor = Colors.white,
-    this.yangColor = Colors.black,
+    this.yinColor,
+    this.yangColor,
     this.dimension = 48.0,
   }) : super(key: key);
 
@@ -22,10 +22,10 @@ class YinAndYang extends StatelessWidget {
   final Curve curve;
 
   /// The color of the yin part. Default is [Colors.white]
-  final Color yinColor;
+  final Color? yinColor;
 
   /// The color of the yang part. Default is [Colors.black]
-  final Color yangColor;
+  final Color? yangColor;
 
   /// The widget is square in size. Dimension refers to the length of the side
   /// or width or height. Default value is 48
@@ -39,8 +39,8 @@ class YinAndYang extends StatelessWidget {
         delegate: _YinAndYangDelegate(
           loopDuration: loopDuration,
           curve: curve,
-          yinColor: yinColor,
-          yangColor: yangColor,
+          yinColor: yinColor ?? Colors.white,
+          yangColor: yangColor ?? Theme.of(context).colorScheme.primary,
         ),
       ),
     );
@@ -113,11 +113,5 @@ class _YinAndYangDelegate extends CanvasKitDelegate {
     drawCircle(Offset(outerRadius, innerRadius), innerRadius / 4, yang);
     drawCircle(Offset(size.width - outerRadius, size.height - innerRadius),
         innerRadius / 4, yin);
-
-    // path.addArc(
-    //     Rect.fromCircle(
-    //         center: Offset(outerRadius, innerRadius), radius: innerRadius),
-    //     0,
-    //     pi / 2);
   }
 }
