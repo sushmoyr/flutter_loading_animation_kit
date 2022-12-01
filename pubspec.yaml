@@ -1,7 +1,7 @@
 name: flutter_loading_animation_kit
 description: A new Flutter project.
 version: 0.0.1
-homepage:
+repository: https://github.com/sushmoyr/flutter_loading_animation_kit
 
 environment:
   sdk: '>=2.18.1 <3.0.0'
