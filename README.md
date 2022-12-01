@@ -1,39 +1,82 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# flutter_loading_animation_kit
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+This package contains a set of loading animation kit which is implemented purely in dart and custom canvas. No third party assets are used.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+## Package under development.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+The package is still under development. Use it with caution because there may be breaking changes in the future.
 
-## Features
+## Gallery
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+![](https://s4.gifyu.com/images/loading-kit-demo.gif)
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Depend on it
+
+Run this command:
+
+With Flutter:
+
+```
+flutter pub add flutter_loading_animation_kit
+```
+
+This will add a line like this to your package's pubspec.yaml (and run an implicit flutter pub get):
+
+```yaml
+  dependencies:
+    flutter_loading_animation_kit: ^latest version
+```
+
+Import it
+
+```dart
+import 'package:flutter_loading_animation_kit/flutter_loading_animation_kit.dart';
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Import it
 
 ```dart
-const like = 'sample';
+import 'package:flutter_loading_animation_kit/flutter_loading_animation_kit.dart';
 ```
 
-## Additional information
+Then add a widget provided by this package
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+Scaffold(
+  body: Center(
+    child: FourCirclePulse(),
+  ),
+)
+```
+
+You can also tweek various properties to modify the widget to your choice.
+
+
+```dart
+Scaffold(
+  body: Center(
+    child: FourCirclePulse(
+      circleColor: Colors.blue, //The color of the circles
+      dimension: 48.0, // The size of the widget.
+      turns: 2, //Turns in each loop
+      loopDuration: const Duration(seconds: 1), // Duration of each loop
+      curve: Curves.linear, //Curve of the animation
+    ),
+  ),
+)
+```
+
+## How to contribute
+
+- Fork the repo
+- Create a new brunch
+- Do what you want
+- Commit changes
+- Open pull request
+
+**NB: Try to follow the original code style. Study the existing classes and methods before editing. If you need to ask anything, contact me at sushmoyr@gmail.com**
+
