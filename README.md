@@ -53,13 +53,29 @@ Scaffold(
 )
 ```
 
-You can also tweek various properties to modify the widget to your choice.
+You can also tweak various properties to modify the widget to your choice.
 
 
 ```dart
 Scaffold(
   body: Center(
     child: FourCirclePulse(
+      circleColor: Colors.blue, //The color of the circles
+      dimension: 48.0, // The size of the widget.
+      turns: 2, //Turns in each loop
+      loopDuration: const Duration(seconds: 1), // Duration of each loop
+      curve: Curves.linear, //Curve of the animation
+    ),
+  ),
+)
+```
+
+In case you can't remember the loading widgets name, there is a class which provides all the loading animations via static methods.
+
+```dart
+Scaffold(
+  body: Center(
+    child: LoadingAnimationKit.fourCirclePulse(
       circleColor: Colors.blue, //The color of the circles
       dimension: 48.0, // The size of the widget.
       turns: 2, //Turns in each loop

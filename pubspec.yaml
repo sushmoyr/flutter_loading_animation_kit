@@ -1,6 +1,6 @@
 name: flutter_loading_animation_kit
-description: A flutter package which contains various loading animations
-version: 0.0.1
+description: A flutter package which contains a set of beautiful and creative loading animations.
+version: 0.0.2
 repository: https://github.com/sushmoyr/flutter_loading_animation_kit
 
 environment:
