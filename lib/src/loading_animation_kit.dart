@@ -71,4 +71,21 @@ class LoadingAnimationKit {
         yangColor: yangColor,
         dimension: dimension,
       );
+
+  static Widget merryGoRound({
+    Key? key,
+    Duration? loopDuration,
+    Curve? curve,
+    Color? merryColor,
+    Color? outlineColor,
+    double? dimension,
+  }) =>
+      MerryGoRound(
+        key: key,
+        loopDuration: loopDuration,
+        curve: curve,
+        merryColor: merryColor,
+        outlineColor: outlineColor,
+        dimension: dimension,
+      );
 }
