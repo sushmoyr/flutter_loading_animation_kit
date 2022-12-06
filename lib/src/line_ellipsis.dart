@@ -84,11 +84,3 @@ class _LineEllipsisDelegate extends CanvasKitDelegate {
     // return prev + (segSize * next);
   }
 }
-/*
-time 20
-count 4
-seg size 5
-current 12
-complete seg 12 / 5 = 2 (current / segSize)
-complete time 5 * 2 = 10 (segSize * complete)
- */

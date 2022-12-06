@@ -5,3 +5,4 @@ export 'src/yin_and_yang.dart';
 export 'src/ripple_ring.dart';
 export 'src/line_ellipsis.dart';
 export 'src/loading_animation_kit.dart';
+export 'src/cart_loading.dart';
