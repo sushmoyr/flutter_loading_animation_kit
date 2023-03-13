@@ -63,11 +63,11 @@ class _CartLoadingDelegate extends CanvasKitDelegate {
     double time = ((t * 1000) % totalTime);
     double timeProgress = time / totalTime;
 
-    drawRect(
-        Offset.zero & size,
-        Paint()
-          ..color = Colors.blue
-          ..style = PaintingStyle.stroke);
+    // drawRect(
+    //     Offset.zero & size,
+    //     Paint()
+    //       ..color = Colors.blue
+    //       ..style = PaintingStyle.stroke);
 
     Offset viewPort = const Offset(126, 126);
     List<Offset> pathPoints = const [
